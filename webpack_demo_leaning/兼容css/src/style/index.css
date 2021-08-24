@@ -1,0 +1,6 @@
+#div_box {
+    background-image: url("../img/3.jpg");
+    display: flex;
+    backface-visibility: hidden;
+}
+

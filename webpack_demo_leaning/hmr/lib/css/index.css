@@ -1,0 +1,15 @@
+/*!*************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/_css-loader@5.2.7@css-loader/dist/cjs.js!./node_modules/_postcss-loader@6.1.1@postcss-loader/dist/cjs.js??ruleSet[1].rules[0].use[2]!./src/style/index.css ***!
+  \*************************************************************************************************************************************************************************************/
+.box {
+    background-image: url(../cb805c4fbf.jpg);
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    height: 150px;
+    width: 130px;
+}
+
+img {
+    height: 130px;
+    width: 130px;
+}

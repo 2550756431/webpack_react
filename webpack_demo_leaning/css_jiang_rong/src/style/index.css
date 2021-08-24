@@ -1,0 +1,6 @@
+.box {
+    backface-visibility: hidden;
+    background-image: url(../pictrue/1.jpg);
+    width: 100px;
+    height: 100px;
+}

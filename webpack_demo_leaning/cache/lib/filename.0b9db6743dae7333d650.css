@@ -1,0 +1,7 @@
+.box{
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    width: 100px;
+    height: 200px;
+    background-image: url(c2923c86f7.jpg);
+}

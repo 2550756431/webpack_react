@@ -1,0 +1,11 @@
+/*!*************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/_css-loader@5.2.7@css-loader/dist/cjs.js!./node_modules/_postcss-loader@6.1.1@postcss-loader/dist/cjs.js??ruleSet[1].rules[0].use[2]!./src/style/index.css ***!
+  \*************************************************************************************************************************************************************************************/
+#div_box {
+    background-image: url(../d73f062c31.jpg);
+    display: flex;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+}
+
+

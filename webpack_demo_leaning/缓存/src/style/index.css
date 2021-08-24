@@ -1,0 +1,6 @@
+.box{
+    backface-visibility: hidden;
+    height: 50px;
+    width: 50px;
+    background-image: url("../picture/4.jpg");
+}

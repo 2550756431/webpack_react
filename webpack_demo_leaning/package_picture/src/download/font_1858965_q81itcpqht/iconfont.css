@@ -1,0 +1,143 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 1858965 */
+  src: url('iconfont.woff2?t=1625713022110') format('woff2'),
+       url('iconfont.woff?t=1625713022110') format('woff'),
+       url('iconfont.ttf?t=1625713022110') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-shuaxin:before {
+  content: "\e60c";
+}
+
+.icon-shizhong:before {
+  content: "\e60e";
+}
+
+.icon-tupian:before {
+  content: "\e60f";
+}
+
+.icon-bianji:before {
+  content: "\e610";
+}
+
+.icon-chaosong:before {
+  content: "\e611";
+}
+
+.icon-cuiban:before {
+  content: "\e612";
+}
+
+.icon-daichuli:before {
+  content: "\e613";
+}
+
+.icon-a-liucheng1:before {
+  content: "\e614";
+}
+
+.icon-dizhi:before {
+  content: "\e6d4";
+}
+
+.icon-fasong:before {
+  content: "\e60a";
+}
+
+.icon-WIFI:before {
+  content: "\e653";
+}
+
+.icon-fasongtongzhi:before {
+  content: "\e60b";
+}
+
+.icon-fasongchuansong-forward-box-xian:before {
+  content: "\e8aa";
+}
+
+.icon-gongzhonghao:before {
+  content: "\e63e";
+}
+
+.icon-tianchongxing-:before {
+  content: "\e63d";
+}
+
+.icon-dangao2:before {
+  content: "\e600";
+}
+
+.icon-shouye1-copy:before {
+  content: "\e601";
+}
+
+.icon-wodedangxuan:before {
+  content: "\e602";
+}
+
+.icon-dangao3:before {
+  content: "\e603";
+}
+
+.icon-index-select:before {
+  content: "\e604";
+}
+
+.icon-wodedangxuan1:before {
+  content: "\e607";
+}
+
+.icon-che-copy:before {
+  content: "\e609";
+}
+
+.icon-che-copy1:before {
+  content: "\e608";
+}
+
+.icon-shouyeshouye:before {
+  content: "\e606";
+}
+
+.icon-denglu:before {
+  content: "\e60d";
+}
+
+.icon-gouwuchexiadan:before {
+  content: "\e666";
+}
+
+.icon-shouye:before {
+  content: "\e796";
+}
+
+.icon-dangao:before {
+  content: "\e71e";
+}
+
+.icon-gouwuche:before {
+  content: "\e617";
+}
+
+.icon-dangao1:before {
+  content: "\e605";
+}
+
+.icon-denglu1:before {
+  content: "\e6b4";
+}
+
+.icon-ziyuan:before {
+  content: "\e622";
+}
+
