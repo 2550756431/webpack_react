@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- woshi removecommnet -->
+    <div class="box">asdfadsfasdf</div>
+</body>
+<script>
+    var s = new Set();
+    s.add("hello").add("goodbye").add("hello");
+    s.size === 2;
+    s.has("hello") === true;
+
+    s.forEach(function (element, sameElement, set) {
+        console.log(element, sameElement, set, "SetSetSet");
+    })
+
+
+    ////
+
+
+    var m = new Map();
+    m.set("hello", 42);
+    m.set(s, 34);
+    console.log(m.get(s), 'MapMapMapMapMapMap');
+
+    // Weak Maps
+    var wm = new WeakMap();
+    wm.set(s, {
+        extra: 42
+    });
+
+    console.log(wm.get(s), 'WeakMapWeakMapWeakMap');
+
+
+    var ws = new WeakSet();
+    ws.add({
+        data: 42
+    });
+
+    for (let key in ws) {
+        console.log(key, "WeakSetWeakSet");
+    }
+
+
+    ////
+    
+
+
+    ////////////////
+    var target = {
+        name: 'poetries',
+        _age: 22
+    }
+
+    var logHandler = {
+        get: function (target, key) {
+            console.log(target, key, "setlogHandlerlogHandlerset");
+            if (key.startsWith('_')) {
+                console.log('私有变量age不能被访问')
+                return false
+            }
+            return target[key];
+        },
+        set: function (target, key, value) {
+            console.log(target, key, "setlogHandlerlogHandlerset");
+            if (key.startsWith('_')) {
+                console.log('私有变量age不能被修改')
+                return false
+            }
+            target[key] = value;
+        }
+    }
+    var targetWithLog = new Proxy(target, logHandler);
+
+    // 私有变量age不能被访问
+    targetWithLog._age;
+
+    // 私有变量age不能被修改
+    targetWithLog._age = 'others';
+
+    
+</script>
+
+</html>

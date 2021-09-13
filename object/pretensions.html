@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    !(function () {
+        "use strict"
+        let obj = {};
+        let obj1 = {
+            a: 1,
+            b: 2
+        };
+        Object.preventExtensions(obj1);
+        obj1.c = 1; // undefined  ;;严格模式下 会报错  Uncaught TypeError: Cannot add property c, object is not extensible
+        console.log(obj1.c);
+        obj = obj1;
+        console.log(Object.isExtensible(obj1))
+
+    })()
+
+
+    !(function () {
+        ///密封对象是指那些不可扩展 的，且所有自身属性都不可配置且因此不可删除（但不一定是不可写）的对象。
+        var hasProp = {
+            fee: 'fie foe fum'
+        };
+        Object.preventExtensions(hasProp);
+        Object.defineProperty(hasProp, 'fee', {
+            configurable: false
+        });
+
+        console.log(Object.isSealed(hasProp), "isSealed");
+    })()
+</script>
+
+</html>

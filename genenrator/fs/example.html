@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let fs = {
+        readFile: (params, callback) => {
+            switch (params) {
+                case "url1":
+                    return "url1"
+                case "url2":
+                    return "url2"
+                case "url3":
+                    return "url3"
+                default:
+                    break;
+            }
+        }
+    }
+    let thunk = (fn) => {
+        console.log(fn, "thunkthunkthunkthunk");
+        return function (url) {
+            console.log(url, "urlurlurlurl");
+            return function (callback) {
+                console.log(this, 'callbackcallback');
+                return fn.call(this, url, callback)
+            }
+        }
+    }
+    let readFileThunk = thunk(fs.readFile)
+    let readAsync = function* () {
+        const r1 = yield readFileThunk('url1');
+    }
+
+    let run = function (fn) {
+        let genenrator = fn()
+
+        function next() {
+            var res = genenrator.next();
+            if (res.done) return;
+            res.value(next)
+        };
+        next()
+    }
+
+    run(readAsync)
+</script>
+
+</html>

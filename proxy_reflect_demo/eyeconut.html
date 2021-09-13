@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    const monster1 = {
+        eyeCount: 4
+    };
+
+    const handler1 = {
+        set(obj, prop, value) {
+            console.log(value, value % 2);
+            console.log(...arguments);
+            if ((prop === 'eyeCount') && ((value % 2) !== 0)) {
+                console.log('Monsters must have an even number of eyes');
+            } else {
+                return Reflect.set(...arguments);
+            }
+        }
+    };
+
+    const proxy1 = new Proxy(monster1, handler1);
+
+    proxy1.eyeCount = 111;
+    // expected output: "Monsters must have an even number of eyes"
+
+    console.log(proxy1.eyeCount);
+    // expected output: 4
+
+    // proxy1.eyeCount = 2;
+    // console.log(proxy1.eyeCount);
+    // expected output: 2
+</script>
+
+</html>

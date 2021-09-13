@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function* testGen() {
+        try {
+            yield;
+        } catch (err) {
+            console.log('innerErr-->', err);
+        }
+        yield 1;
+
+        return 1
+    }
+    const gen = testGen();
+
+    console.log(gen.next());
+    console.log(gen.next());
+    console.log(gen.next());
+
+    //gen.throw(new Error("gen.throw")); // 在第二个yield位置抛出异常，无法捕获
+
+    console.log('after');
+    // 运行结果
+    // Uncaught Error: gen.throw //后面的不再执行
+</script>
+
+</html>

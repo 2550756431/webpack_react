@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p onclick="openFile()">openFile</p>
+    <textarea></textarea>
+</body>
+<script>
+    const openFile = async () => {
+        console.log("open");
+        let _handle
+        try {
+            const [handle] = await showOpenFilePicker({
+                multiple: false, // 只选择一个文件
+                types: [{
+                    description: 'Navlang Files',
+                    accept: {
+                        'image/html/txt': ['.txt'],
+                    },
+                }, ],
+                excludeAcceptAllOption: true,
+            });
+            _handle = handle
+            console.log(handle, "handle");
+        } catch (e) {
+            if (e.message.indexOf('The user aborted a request') === -1) {
+                console.error(e);
+                return;
+            }
+        }
+
+        // 如果没有选择文件，就不需要继续执行了
+        if (!_handle) {
+            return;
+        }
+
+        // 这里的 options 用来声明对文件的权限，能否写入
+        const options = {
+            writable: true,
+            mode: 'readwrite',
+        };
+        // 然后向用户要求权限
+
+
+
+        
+
+        if ((await _handle.queryPermission(options)) !== 'granted' &&
+            (await _handle.requestPermission(options)) !== 'granted') {
+            alert('Please grant permissions to read & write this file.');
+            return;
+        }
+
+        // 前面获取的是 File_handle，需要转换 File 才能用
+        const file = await _handle.getFile();
+        // 接下来，`file` 就是普通 File 实例，你想怎么处理都可以，比如，获取文本内容
+        const code = await file.text();
+
+        console.log(file);
+       let txtArea =  document.querySelector("textarea");
+       txtArea.innerHTML= code
+    };
+</script>
+
+</html>

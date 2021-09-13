@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let obj = {
+        a: 1,
+        b: 2,
+        c: 3
+    }
+
+    console.log(Object.entries(obj));
+
+    let computedArr = [12, 2, 43, 25, 24352, 231, 2, 312, 12, 2];
+    let newarr = computedArr.reverse().reduce((pre, currt) => {
+        if (pre[currt]) {
+            pre[currt] += 1
+
+        } else {
+            pre[currt] = 1;
+        }
+
+        return pre
+
+    }, {})
+
+    console.log(newarr);
+    console.log(computedArr);
+
+</script>
+
+</html>

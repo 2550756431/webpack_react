@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /////使用 Proxy 则可以将   校验器      从核心逻辑分离出来自成一体
+
+    function createValidator(target, validator) {
+        return new Proxy(target, {
+            _validator: validator,
+            set(target, key, value, proxy) {
+                console.log(target, key, value, proxy, "proxyproxy");
+                if (target.hasOwnProperty(key)) {
+                    let validator = this._validator[key];
+                    if (!!validator(value)) {
+                        return Reflect.set(target, key, value, proxy);
+                    } else {
+                        throw Error(`Cannot set ${key} to ${value}. Invalid.`);
+                    }
+                } else {
+                    throw Error(`${key} is not a valid property`)
+                }
+            }
+        });
+    }
+
+    const personValidators = {
+        name(val) {
+            return typeof val === 'string';
+        },
+        age(val) {
+            return typeof age === 'number' && val > 18;
+        }
+    }
+    class Person {
+        constructor(name, age) {
+            this.name = name;
+            this.age = age;
+            return createValidator(this, personValidators);
+        }
+    }
+
+    const bill = new Person('Bill', 25);
+
+    // 以下操作都会报错
+    // bill.name = 0;
+    bill.age = 'Bill';
+    // bill.age = 15;
+</script>
+
+</html>

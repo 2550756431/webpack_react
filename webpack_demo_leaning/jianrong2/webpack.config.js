@@ -4,9 +4,12 @@ const { resolve } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 process.env.NODE_ENV = " development"
 module.exports = {
-    entry: "./src/index.js",
+    entry: {
+        home: './src/index.js',
+        about: './src/entry.js',
+    },
     output: {
-        filename: "builts.js",
+        filename: "[name]_[contenthash:10].js",
         path: resolve(__dirname, "lib"),
         clean: true
     },
@@ -28,6 +31,30 @@ module.exports = {
                         }
                     }
                 ]
+            },
+            {
+                test: /\.js$/,
+                loader: "babel-loader",
+                exclude: /node_modules/,
+                options: {
+                    presets: [
+                        [
+                            "@babel/preset-env",
+                            {
+                                useBuiltIns: "usage",
+                                "targets": {
+                                    "chrome": "58",
+                                    "ie": "11"
+                                },
+                                corejs: {
+                                    version: 3
+                                }
+                            }
+                        ]
+                        ,
+                        "@babel/preset-react"
+                    ]
+                }
             }
         ]
     },
@@ -38,16 +65,59 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             template: "./src/index.html",
-            minify:{
-                collapseWhitespace:true,
-                removeComments:true
+            minify: {
+                collapseWhitespace: true,
+                removeComments: true
             }
-        })
+        }),
     ],
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+            minChunks: 1,
+            automaticNameDelimiter: '~',
+            cacheGroups: {
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: -10,
+                    // test(module) {
+                    //     // `module.resource` contains the absolute path of the file on disk.
+                    //     // Note the usage of `path.sep` instead of / or \, for cross-platform compatibility.
+                    //     const path = require('path');
+                    //     return (
+                    //       module.resource &&
+                    //       module.resource.endsWith('.svg') &&
+                    //       module.resource.includes(`${path.sep}cacheable_svgs${path.sep}`)
+                    //     );
+                    //   },
+                },
+                default: {
+                    minChunks: 1,
+                    priority: -20,
+                    reuseExistingChunk: true
+                },
+                defaultssss: {
+                    minChunks: 1,
+                    priority: -12,
+                    reuseExistingChunk: true,
+                    // name(module, chunks, cacheGroupKey) {
+                    //     const moduleFileName = module && module
+                    //         .identifier()
+                    //         .split('/')
+                    //         .reduceRight((item) => item);
+                    //     return `${moduleFileName}`;
+                    // },
+                },
+                // commonsssssssssssss: {
+                //     name: 'commons',          //
+                //     chunks: 'initial',        ////
+                //     minChunks: 2,             //////////
+                // },
+            }
+        },
+    },
     mode: "development"
 }
-
-
 /*
 
 "development": [
@@ -63,3 +133,4 @@ module.exports = {
 
 
 */
+

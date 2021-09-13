@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    /////////////////////////////////////////  has in proxy
+    var api = {
+        _apiKey: '123abc456def',
+        getUsers: function () {},
+        getUser: function (userId) {},
+        setUser: function (userId, config) {}
+    };
+
+    const RESTRICTED = ['_apiKey', "getUsers"];
+    api = new Proxy(api, {
+        has(target, key) {
+            console.log(key, "_apiKey_apiKey");
+            return (RESTRICTED.indexOf(key) > -1) ?
+                false :
+                Reflect.has(target, key);
+        }
+    });
+
+    // these log false, and `for in` iterators will ignore _apiKey
+    console.log("_apiKey" in api);
+    console.log("getUsers" in api);
+
+
+
+    // for (var key in api) {
+    //     if (api.hasOwnProperty(key) && key === "_apiKey") {
+    //         console.log("This will never be logged because the proxy obscures _apiKey...")
+    //     }
+    // }
+</script>
+
+</html>

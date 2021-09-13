@@ -1,25 +1,37 @@
 import logo from './logo.svg';
 import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
+import { connect } from "react-redux";
+import {
+  num_increment,
+  num_decrement
+} from "./actions/index";
+import {
+  Button
+} from "antd"
+import React, { Component } from 'react'
+ class App extends Component {
+  render() {
+    console.log(this.props,"propsprops");
+    return (
+      <div className="App">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+        <Button>asdfasdf</Button>
+      </div>
+    )
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    loginState: state.loginReducer,
+    dataState: state.dataReducer
+  }
+}
+
+const mapDispathToProps = () => {
+  return {
+    num_increment,
+    num_decrement
+  }
+}
+export default connect(mapStateToProps, mapDispathToProps)(App);

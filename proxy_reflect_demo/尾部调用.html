@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    function factorial(n, acc = 1) {
+
+        console.log(n,"nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+        "use strict";
+        if (n <= 1) return acc;
+        return factorial(n -500, n * acc);
+    }
+
+    // 在如今的大部分实现中都将引起栈溢出（Stack overflow），
+    // 但是在 ES2015 中处理任意数量的输入都是安全的
+    factorial(10000)
+</script>
+
+</html>

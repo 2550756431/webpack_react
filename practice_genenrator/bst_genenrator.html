@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 中序遍历--升序--左->根->右
+    let inOrder = function* (node) {
+        if (node) {
+            yield* inOrder(node.left);
+            yield node.data;
+            yield* inOrder(node.right);
+        }
+    }
+
+    let data = [56, 28, 78, 20, 35, 68, 88, 10, 25, 30, 45, 80, 89];
+    const bst = new BST();
+    data.forEach(i => bst.insert(i))
+    const result = [...bst.inOrder(bst.root)]; //[10, 20, 25, 28, 30, 35, 45, 56, 68, 78, 80, 88, 89]
+</script>
+
+</html>

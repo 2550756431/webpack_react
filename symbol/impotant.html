@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let obj = {
+        data: ["nodelete", "change", "todo"],
+        [Symbol.iterator]() {
+            let _this = this;
+            let data = _this.data;
+            let index = -1;
+            return {
+                next() {
+                    index++;
+                    if (index != 3) {
+                        return {
+                            value: data[index],
+                            done: false
+                        }
+                    } else {
+                        return {
+                            value: data[index],
+                            done: true
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+
+    for (let item of obj) {}
+
+    let indexF = 1
+    let _indexF = ++indexF + indexF++ + indexF++ + ++indexF;
+
+    console.log(indexF, _indexF);
+    //////////////////
+    /*   其次，其它调用到遍历器的操作还有解构赋值、扩展操作符、其它任何接受数组作为参数的场合，如：
+         [...]
+         for...of
+         Array.from()
+         Map(), Set(), WeakMap(), WeakSet()（比如）
+         Promise.all()
+         Promise.race()
+    */
+
+    !(function () {
+        let obj = {};
+        let obj1 = {
+            a: 1,
+            b: 2
+        };
+        Object.preventExtensions(obj1);
+        obj1.c = 1;
+        obj = obj1;
+        console.log(Object.isExtensible(obj1))
+
+    })()
+
+    !(function () {
+        function fn() {
+            this.a = 1;
+            this.b = 2;
+        }
+
+        fn.prototype.b = 3;
+        fn.prototype.c = 4;
+        let o = new fn();
+        console.log(o);
+    })()
+
+    !(function () {
+        function doSomething() {
+            this.a = 1
+        }
+        // 和声明函数的方式无关，
+        // JavaScript 中的函数永远有一个默认原型属性。
+        doSomething.prototype.foo = "bar";
+        let d = new doSomething()
+        console.log(d.__proto__, 90);
+
+        var doSomeInstancing = new doSomething();
+        doSomeInstancing.prop = "some value"; // add a property onto the object
+        console.log(doSomeInstancing);
+    })()
+
+
+    !(function () {
+        function Graph() {
+            this.vertices = [];
+            this.edges = [];
+        }
+
+        Graph.prototype = {
+            addVertex: function (v) {
+                this.vertices.push(v);
+            }
+        };
+
+        var g = new Graph();
+        console.log(g.__proto__.hasOwnProperty('addVertex'));
+        console.log(g.addVertex);
+    })()
+</script>
+
+</html>

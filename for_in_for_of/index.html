@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    ////新定义的属性也被for in输出来了，而for of并不会对name进行输出。
+    var arr = ["nick", "binbin", "piter", "jhon" , ];
+    arr.name = "newName";
+    for (var key in arr) {
+        console.log(key + ":" + arr[key]);
+    }
+    console.log("-----------------------------------");
+    for (var item of arr) {
+        console.log(item);
+    }
+</script>
+
+</html>
