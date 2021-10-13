@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function mixins(...list) {
+        return function (target) {
+            Object.assign(target.prototype, ...list);
+        };
+    }
+
+    const Foo = {
+        foo() {
+            console.log('foo')
+        }
+    };
+
+   mixins(Foo)
+    class MyClass {}
+
+    let obj = new MyClass();
+    obj.foo() // "foo"
+</script>
+
+</html>

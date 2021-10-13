@@ -23,12 +23,12 @@
                     index++;
                     if (index != 3) {
                         return {
-                            value: data[index],
+                            value: data[index] + index,
                             done: false
                         }
                     } else {
                         return {
-                            value: data[index],
+                            value: data[index]+ index,
                             done: true
                         }
                     }
@@ -38,11 +38,12 @@
         }
     }
 
-    for (let item of obj) {}
-
+    for (let item of obj) {
+console.log(item);
+    };
     let indexF = 1
     let _indexF = ++indexF + indexF++ + indexF++ + ++indexF;
-
+             // ++indexF 返回的是 indexF 加1 后 的结果；；二而indexF++ 返回的时 indexF 的值；；；
     console.log(indexF, _indexF);
     //////////////////
     /*   其次，其它调用到遍历器的操作还有解构赋值、扩展操作符、其它任何接受数组作为参数的场合，如：

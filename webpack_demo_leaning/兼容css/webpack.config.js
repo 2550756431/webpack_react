@@ -1,7 +1,10 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { resolve } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-process.env.NODE_ENV = "development"
+// process.env.NODE_ENV = "production"
+// const HappyPack = require('happypack');
+var ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const chalk = require("chalk")
 module.exports = {
     entry: "./src/index.js",
     output: {
@@ -48,26 +51,50 @@ module.exports = {
                 }
             },
             {
+                test: /\.js$/,
+                loader: "babel-loader",
+                exclude: /node_modules/,
+                options: {
+                    presets: [
+                        [
+                            "@babel/preset-env",
+                            {
+                                targets: {
+                                    chrome: "58"
+                                },
+                                corejs: 3,
+                                useBuiltIns: "usage"
+                            }
+                        ]
+                    ]
+                }
+            },
+            {
                 exclude: /\.(css|less|html|js|jpg|gif|png)/,
                 loader: 'file-loader'
             }
         ]
     },
     plugins: [
+        new ProgressBarPlugin({
+            format: '  build [:bar] ' + chalk.green.bold(':percent') + ' (:elapsed seconds)' + ':msg ',
+            clear: true
+        }),
         new HtmlWebpackPlugin({
             template: "./src/index.html"
         }),
         new MiniCssExtractPlugin({
             filename: "css/index.css"
-        })
+        }),
+
     ],
-    mode: "development",
-    devServer: {
-        contentBase: resolve(__dirname, "lib"),
-        compress: true,
-        port: 3000,
-        open: true
-    }
+    mode: "production",
+    // devServer: {
+    //     contentBase: resolve(__dirname, "lib"),
+    //     compress: true,
+    //     port: 3000,
+    //     open: true
+    // }
 }
 
 //css 兼容(第二种 写法)
