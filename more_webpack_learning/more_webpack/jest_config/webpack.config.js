@@ -1,8 +1,8 @@
 const path = require("path");
 const CircularDependencyPlugin = require("circular-dependency-plugin");
 const Os =require("os");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { resolve } = require("_url@0.11.0@url");
+const HtmlWebpackPlugin = require("html-webpack-plugin")
 module.exports = {
     entry: {
         "base": "./src/base.js"
