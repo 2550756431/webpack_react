@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+<script>
+    //在最后的例子中，我创建一个图案然后赋给了 fillStyle 属性。唯一要注意的是，使用 Image 对象的 onload handler 来确保设置图案之前图像已经装载完毕
+
+
+    function draw() {
+        var ctx = document.getElementById('canvas').getContext('2d');
+
+        // 创建新 image 对象，用作图案
+        var img = new Image();
+        img.src = 'https://mdn.mozillademos.org/files/222/Canvas_createpattern.png';
+        img.onload = function () {
+
+            // 创建图案
+            var ptrn = ctx.createPattern(img, 'repeat');
+            ctx.fillStyle = ptrn;
+            ctx.fillRect(0, 0, 150, 150);
+
+        }
+    }
+
+    draw()
+</script>
+
+</html>
+
+<!-- 
+    createPattern(image, type) -------用 canvas 对象作为 Image 参数在 Firefox 1.5 (Gecko 1.8) 中是无效的。
+    type  -----repeat，repeat-x，repeat-y 和 no-repeat。
+
+
+ -->

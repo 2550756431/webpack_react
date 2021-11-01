@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+<script>
+    function draw() {
+        var ctx = document.getElementById('canvas').getContext('2d');
+
+        ctx.shadowOffsetX = 2;
+        ctx.shadowOffsetY = 2;
+        ctx.shadowBlur = 2;
+        ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+
+        ctx.font = "20px Times New Roman";
+        ctx.fillStyle = "Black";
+        ctx.fillText("Sample String", 5, 30);
+    }
+
+    draw()
+</script>
+
+</html>
+
+<!--  shadowOffsetX/shadowOffsetY------负值表示阴影会往上或左延伸，正值则表示会往下或右延伸，它们默认都为 0
+      shadowBlur   --用于设定阴影的模糊程度，其数值并不跟像素数量挂钩，也不受变换矩阵的影响，默认为 0。
+      shadowColor          --是标准的 CSS 颜色值，用于设定阴影颜色效果，默认是全透明的黑色。
+
+    context.fillText(text,x,y,maxWidth);------
+    参数	         描述
+     text	    规定在画布上输出的文本。
+     x	        开始绘制文本的 x 坐标位置（相对于画布）。
+     y	        开始绘制文本的 y 坐标位置（相对于画布）。
+     maxWidth	可选。允许的最大文本宽度，以像素计。
+
+
+     font = value
+     当前我们用来绘制文本的样式. 这个字符串使用和 CSS font 属性相同的语法. 默认的字体是 10px sans-serif。
+     textAlign = value
+     文本对齐选项. 可选的值包括：start, end, left, right or center. 默认值是 start。
+     textBaseline = value
+     基线对齐选项. 可选的值包括：top, hanging, middle, alphabetic, ideographic, bottom。默认值是 alphabetic。
+     direction = value
+     文本方向。可能的值包括：ltr, rtl, inherit。默认值是 inherit
+ -->

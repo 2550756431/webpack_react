@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="300" height="250"></canvas>
+    <input type="text" name="" id="miterLimit">
+</body>
+<script>
+    function draw() {
+        var ctx = document.getElementById('canvas').getContext('2d');
+
+        // 清空画布
+        ctx.clearRect(0, 0, 150, 150);
+        // 绘制线条
+        ctx.beginPath();
+        // 设置线条样式
+        ctx.strokeStyle = '#000';
+        ctx.moveTo(0, 100);
+
+        ctx.miterLimit = 4;
+
+
+        for (i = 0; i < 24; i++) {
+            var dy = i % 2 == 0 ? 25 : -25;
+            ctx.lineTo(Math.pow(i, 1.5) * 2, 75 + dy);
+        }
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.strokeStyle = 'red';
+        ctx.moveTo(0, 100);
+        ctx.lineTo(Math.pow(25, 1.5) * 2, 100);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.strokeStyle = 'red';
+        ctx.moveTo(0, 50);
+        ctx.lineTo(Math.pow(25, 1.5) * 2, 50);
+        ctx.stroke();
+        return false;
+
+    }
+    draw()
+
+    // context.arc(x,y,r,sAngle,eAngle,counterclockwise);
+
+    // 参数	描述
+    // x	圆的中心的 x 坐标。
+    // y	圆的中心的 y 坐标。
+    // r	圆的半径。
+    // sAngle	起始角，以弧度计。（弧的圆形的三点钟位置是 0 度）。
+    // eAngle	结束角，以弧度计。
+    // counterclockwise	可选。规定应该逆时针还是顺时针绘图。False = 顺时针，true = 逆时针。
+</script>

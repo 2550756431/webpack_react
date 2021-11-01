@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body onload="draw();">
+    <canvas id="canvas" width="150" height="150"></canvas>
+    <div style="display:none;">
+        <img id="source" src="https://mdn.mozillademos.org/files/5397/rhino.jpg" width="300" height="227">
+        <img id="frame" src="https://mdn.mozillademos.org/files/242/Canvas_picture_frame.png" width="132" height="150">
+    </div>
+</body>
+<script>
+    function draw() {
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+
+        // Draw slice
+        ctx.drawImage(document.getElementById('source'),
+            33, 71, 104, 124, 21, 20, 87, 104);
+
+        // Draw frame
+        ctx.drawImage(document.getElementById('frame'), 0, 0);
+    }
+</script>
+
+</html>
+
+<!-- 
+
+    drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
+    第一个参数和其它的是相同的，都是一个图像或者另一个 canvas 的引用。其它8个参数最好是参照右边的图解，前4个是定义图像源的切片位置和大小，后4个则是定义切片的目标显示位置和大小。
+
+
+    drawImage(image, x, y)----- 其中 image 是 image 或者 canvas 对象，x 和 y 是其在目标 canvas 里的起始坐标
+ -->

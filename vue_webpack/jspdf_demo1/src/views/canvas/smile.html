@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+<script>
+    function draw() {
+        var canvas = document.getElementById('canvas');
+        if (canvas.getContext) {
+            var ctx = canvas.getContext('2d');
+
+            ctx.beginPath();
+            ctx.arc(75, 75, 50, 0, Math.PI * 2, true); // 绘制
+            ctx.moveTo(110, 75);
+            ctx.arc(75, 75, 35, 0, Math.PI, false); // 口(顺时针)
+            ctx.moveTo(65, 65);
+            ctx.arc(60, 65, 5, 0, Math.PI * 2, true); // 左眼
+            ctx.moveTo(95, 65);
+            ctx.arc(90, 65, 5, 0, Math.PI * 2, true); // 右眼
+            ctx.stroke();   //描边或填充路径区域(fill())来渲染图形
+        }
+    }
+    draw()
+
+    // context.arc(x,y,r,sAngle,eAngle,counterclockwise);
+
+    // 参数	描述
+    // x	圆的中心的 x 坐标。
+    // y	圆的中心的 y 坐标。
+    // r	圆的半径。
+    // sAngle	起始角，以弧度计。（弧的圆形的三点钟位置是 0 度）。
+    // eAngle	结束角，以弧度计。
+    // counterclockwise	可选。规定应该逆时针还是顺时针绘图。False = 顺时针，true = 逆时针。
+</script>
